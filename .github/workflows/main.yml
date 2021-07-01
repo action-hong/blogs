@@ -30,4 +30,3 @@ jobs:
           username: www_kkopite_cn
           password: ${{ secrets.BLOG_FTP_PASSWORD }}
           local-dir: public
-          server-dir: /
