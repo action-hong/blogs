@@ -31,4 +31,4 @@ jobs:
           FTP_PASSWORD: ${{ secrets.BLOG_FTP_PASSWORD }}
           LOCAL_DIR: public/
           REMOTE_DIR: /
-          ARGS: --delete --transfer-all --parallel=5 --exclude=.user.init
+          ARGS: --delete --transfer-all --parallel=5 --exclude=./.user.ini
