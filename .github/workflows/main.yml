@@ -24,11 +24,15 @@ jobs:
 
       # 部署到 GitHub Pages
       - name: FTP Deploy
-        uses: SamKirkland/FTP-Deploy-Action@2.0.0
-        env:
-          FTP_SERVER: 172.81.245.67
-          FTP_USERNAME: www_kkopite_cn
-          FTP_PASSWORD: ${{ secrets.BLOG_FTP_PASSWORD }}
-          LOCAL_DIR: public
-          REMOTE_DIR: /
-          ARGS: --delete --transfer-all --verbose --excluded=.user.ini
+        uses: SamKirkland/FTP-Deploy-Action@4.1.0
+        with:
+          server: 172.81.245.67
+          username: www_kkopite_cn
+          password: ${{ secrets.BLOG_FTP_PASSWORD }}
+          local-dir: public
+          server-dir: /
+          exclude:
+            - .user.ini
+            - **/.git*
+            - **/.git*/**
+            - **/node_modules/**
