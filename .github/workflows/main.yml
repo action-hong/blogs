@@ -31,8 +31,3 @@ jobs:
           password: ${{ secrets.BLOG_FTP_PASSWORD }}
           local-dir: public
           server-dir: /
-          exclude:
-            - .user.ini
-            - **/.git*
-            - **/.git*/**
-            - **/node_modules/**
