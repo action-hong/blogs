@@ -27,8 +27,8 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@2.0.0
         env:
           FTP_SERVER: 172.81.245.67
-          FTP_USERNAME: www_kkopite_cn
+          FTP_USERNAME: kkopite
           FTP_PASSWORD: ${{ secrets.BLOG_FTP_PASSWORD }}
           LOCAL_DIR: public/
-          REMOTE_DIR: /
-          ARGS: --delete --transfer-all --parallel=5 --exclude=./.user.ini
+          REMOTE_DIR: www.kkopite.cn/
+          ARGS: --delete --transfer-all --parallel=5 --exclude=.user.ini
