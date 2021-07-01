@@ -60,11 +60,11 @@ module.exports = {
     blogConfig: {
       category: {
         location: 2,
-        text: "Category",
+        text: "分类",
       },
       tag: {
         location: 3,
-        text: "Tag",
+        text: "标签",
       },
     },
     friendLink: [
@@ -95,4 +95,13 @@ module.exports = {
   markdown: {
     lineNumbers: true,
   },
+  plugins: [
+    [
+      "permalink-pinyin",
+      {
+        lowercase: true, // Converted into lowercase, default: true
+        separator: "-", // Separator of the slug, default: '-'
+      }
+    ]
+  ]
 };
