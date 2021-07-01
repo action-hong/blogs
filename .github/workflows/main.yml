@@ -29,4 +29,4 @@ jobs:
           server: 172.81.245.67
           username: www_kkopite_cn
           password: ${{ secrets.BLOG_FTP_PASSWORD }}
-          local-dir: public
+          local-dir: public/
