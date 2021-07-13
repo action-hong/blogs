@@ -102,6 +102,16 @@ module.exports = {
         lowercase: true, // Converted into lowercase, default: true
         separator: "-", // Separator of the slug, default: '-'
       }
+    ],
+    [
+      'demo-code', 
+      {
+        onlineBtns: {
+          codepen: true,
+          jsfiddle: true,
+          codesandbox: true,
+      },
+      }
     ]
   ]
 };
