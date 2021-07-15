@@ -91,6 +91,10 @@ module.exports = {
     record: "闽ICP备2021006036号-1",
     recordLink: "https://beian.miit.gov.cn/",
     startYear: "2021",
+    valineConfig: {
+      appId: 'xBAEfuaC1jwjNYyEizNKTp1Y-gzGzoHsz',
+      appKey: 'm4GussuOBthGeh6G03S8RKXR'
+    }
   },
   markdown: {
     lineNumbers: true,
@@ -111,6 +115,13 @@ module.exports = {
           jsfiddle: true,
           codesandbox: true,
       },
+      }
+    ],
+    // 离谱，文档写着会自动注册，但还是要自己加才行？
+    [
+      '@vuepress/register-components',
+      {
+        componentsDir: '/.vuepress/components'
       }
     ]
   ]
