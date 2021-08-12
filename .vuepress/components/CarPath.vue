@@ -321,7 +321,6 @@ export default {
      * @param { MouseEvent | TouchEvent } event
      */
     handleEvent (type, event) {
-      console.log(type, event)
       if (this.isDraw) {
         // 越界处理
         const {
