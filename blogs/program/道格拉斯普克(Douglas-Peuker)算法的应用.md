@@ -65,18 +65,19 @@ function DouglasPeucker(points, epsilon) {
 
 下面是一张该算法的简单示意图:
 
-![img](https://upload.wikimedia.org/wikipedia/commons/3/30/Douglas-Peucker_animated.gif)
+![img](/img/Douglas-Peucker_animated.gif)
 
 ### 分析
 
 有了该算法后，我们只要调整好相应的`epsilon`值，就能得到我们想要的效果了。读者可以尝试点击上方组件内的“Douglas-Peuker算法轨迹”以及调整`epsilon`值查看生成的轨迹以及点数，并于源轨迹进行比较。
 
-设置好合适的`epsilon值`后，无论我们绘制的轨迹如何，速度快还是慢，生成的轨迹都基本和源轨迹相似且点数大幅减少。因此该方案时可行的。
+设置好合适的`epsilon`值后，无论我们绘制的轨迹如何，速度快还是慢，生成的轨迹都基本和源轨迹相似且点数大幅减少。因此该方案时可行的。
 
 ## 后记
 
 之前有看过这么一句话：「你不知道你不知道的东西」，真的很有道理。如果做这个需求的时候，你不知道这个算法，可能你很难找到一个很好的解决方案，而知道这个算法之后实现起来就很快了。因此平时要多拓展自己的知识面，才能才迎接各种奇形怪状的需求下保持从容淡定。
 
+ps：[绘制轨迹组件的源码](https://github.com/action-hong/blogs/blob/main/.vuepress/components/CarPath.vue)
 
 ## 参考
 

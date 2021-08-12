@@ -4,9 +4,9 @@
       @mousedown="handleMouseDown"
       @mousemove="handleMouseMove"
       @mouseup="handleMouseUp"
-      @touchstart="handleMouseDown"
-      @touchmove="handleMouseMove"
-      @touchend="handleMouseUp"
+      @touchstart.prevent="handleMouseDown"
+      @touchmove.prevent="handleMouseMove"
+      @touchend.prevent="handleMouseUp"
       ref="canvas">
     </canvas>
     <div class="btn-container">
@@ -321,11 +321,12 @@ export default {
      * @param { MouseEvent | TouchEvent } event
      */
     handleEvent (type, event) {
+      console.log(type, event)
       if (this.isDraw) {
         // 越界处理
         const {
           x, y
-        } = this.resolveOutRangePoints(event.clientX, event.clientY)
+        } = this.resolveOutRangePoints(event)
         this.points.push([x, y, Date.now()])
 
         // 添加到节流的
@@ -344,11 +345,23 @@ export default {
         }
       }
     },
-    resolveOutRangePoints (x, y) {
+    /**
+     * @param { MouseEvent | TouchEvent } event
+     */
+    resolveOutRangePoints (event) {
       const {
         width,
         height
       } = this.canvas
+      let x = 0
+      let y = 0
+      if (event.touches) {
+        x = event.touches[0].clientX
+        y = event.touches[0].clientY
+      } else {
+        x = event.clientX
+        y = event.clientY
+      }
       x = clamp(0, width, x - this.left)
       y = clamp(0, height, y - this.top)
       return {
