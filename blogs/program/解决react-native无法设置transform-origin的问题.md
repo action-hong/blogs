@@ -22,13 +22,43 @@ tags:
 
 ![img](/img/公式1.png)
 
-简单说明下，先偏移`(x0, y0)`，此时原点来到之前的中心点A处，然后这时候就是绕原点旋转了，旋转结束后，再重新移动原来距离。
+
+简单说明下，先偏移`(x0, y0)`，此时原点变成中心点A处，然后这时候就是绕原点旋转了，旋转结束后，再重新移动原来距离。
 
 同理由于`react-native`是绕中心点旋转的，那么我们要让元素绕其他点B`(x1, y1)`旋转，只需在一开始先移动坐标轴`(-x1+x0, -y1+y0)`，旋转结束后，再移动`(x1-x0, y1-y0)`即可
 
 例如，我们有一个元素，宽高均为100像素，旋转中心为左上角，要是他绕中心点旋转30°，我们可以先让他向右，向下平移50像素，然后旋转45°，再向左，向上平移50像素，如下示意图：
 
 <div class="transform-demo transform-demo-0"></div>
+
+::: details 点击查看代码
+```css
+div.transform-demo-0::after {
+  transform-origin: 0 0;
+  animation: xixi 10s infinite linear forwards;
+}
+
+@keyframes xixi {
+  30% {
+    transform: translate(50%, 50%);
+  }
+
+  60% {
+    transform: translate(50%, 50%) rotate(45deg);
+  }
+
+  90%, 100% {
+    transform: translate(50%, 50%) rotate(45deg) translate(-50%, -50%);
+  }
+}
+```
+:::
+
+这里可能大家会有疑惑，按照公式上明明是先左上移动，再旋转，再右下移动，怎么这边又反过来了？其实很简单，因为不管怎么移动，元素始终是以左上角为旋转中心（即设置的`transform-origin`），因此我们需要对上面的公式做一下变化：
+
+![img](/img/公司2.png)
+
+中间的三个矩阵相乘即表示元素偏移`(x0, y0)`后绕其左上角旋转，即对应到`transform: rotate(θdeg)`
 
 ## 实践
 
@@ -94,7 +124,6 @@ div.transform-demo-3::after {
 ```
 
 <style>
-
   div.transform-demo{
     width: 100px;
     height: 100px;
