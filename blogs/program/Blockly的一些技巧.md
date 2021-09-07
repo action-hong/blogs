@@ -78,3 +78,28 @@ function restore(workspace, text) {
 ```js
 const code = Blockly.JavaScript.workspaceToCode(workspace);
 ```
+
+### 获取模块在视图的位置
+
+类似[`getBoundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect)的效果，在需要引导功能或其他场景需求下可能需要定位某个模块在视图的位置
+
+```js{8,9}
+var injectionDiv = workspace.getInjectionDiv();
+var boundingRect = injectionDiv.getBoundingClientRect();
+var topB = workspace.topBlocks_[0]
+
+const scale = workspace.scale
+const topPosition = topB.getRelativeToSurfaceXY().scale(scale)
+const mainPosition = workspace.getOriginOffsetInPixels()
+
+const left = boundingRect.left + mainPosition.x + topPosition.x
+const top = boundingRect.top + mainPosition.y + topPosition.y
+```
+
+上诉代码即可以计算出首个模块在视图中的定位，**注意，这里没有考虑Blockly外部容器有滚动条**，如果有的话，需要再自行计算
+
+[这是一个简单的demo](https://codepen.io/action-hong/pen/GRENeKe)，注意要保存显示内容区域完全展示（即没有滚动条）
+
+## TODO
+
+待续
