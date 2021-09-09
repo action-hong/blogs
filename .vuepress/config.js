@@ -17,6 +17,12 @@ module.exports = {
         content: "width=device-width,initial-scale=1,user-scalable=no",
       },
     ],
+    [
+      "script",
+      {
+        src: "https://cdn.bootcdn.net/ajax/libs/rough.js/3.1.0/rough.js"
+      }
+    ]
   ],
   theme: "reco",
   themeConfig: {
@@ -31,16 +37,6 @@ module.exports = {
         link: "/timeline/",
         icon: "reco-date",
       },
-      // {
-      //   text: "Docs",
-      //   icon: "reco-message",
-      //   items: [
-      //     {
-      //       text: "vuepress-reco",
-      //       link: "/docs/theme-reco/",
-      //     },
-      //   ],
-      // },
       {
         text: "联系",
         icon: "reco-message",
