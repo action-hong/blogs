@@ -16,12 +16,6 @@ module.exports = {
         name: "viewport",
         content: "width=device-width,initial-scale=1,user-scalable=no",
       },
-    ],
-    [
-      "script",
-      {
-        src: "https://cdn.bootcdn.net/ajax/libs/rough.js/3.1.0/rough.js"
-      }
     ]
   ],
   theme: "reco",
