@@ -131,6 +131,8 @@
 </template>
 
 <script>
+// https://github.com/rough-stuff/rough/issues/99#issuecomment-652814597
+import rough from 'roughjs/bundled/rough.esm'
 let fileInput;
 let canvas;
 let ctx;
