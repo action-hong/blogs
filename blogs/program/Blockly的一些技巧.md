@@ -100,6 +100,10 @@ const top = boundingRect.top + mainPosition.y + topPosition.y
 
 [这是一个简单的demo](https://codepen.io/action-hong/pen/GRENeKe)，注意要保存显示内容区域完全展示（即没有滚动条）
 
-## TODO
+### 获取当前模块的截图
 
-待续
+在一些教学应用里，可以实现编好编程导成图片，供学生参考编辑
+
+```
+
+```
