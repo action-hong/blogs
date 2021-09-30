@@ -3,7 +3,9 @@ title: 关于flex-grow和flex-shrink如何影响元素的大小
 date: 2021-09-29
 categories:
  - program
- - CSS
+tags:
+ - 前端
+ - css
  - flex
 ---
 
@@ -11,11 +13,11 @@ categories:
 
 本文默认`flex-direction`为`row`
 
-该文章主要介绍在使用`flex`的时候，`flex`的子元素总宽度大于或小于父类元素宽度后，`flex-grow`及`flex-shrink`如何控制子元素的扩大或缩放，以及最后宽度的计算
+该文章主要介绍在使用`flex`的时候，`flex`的子元素总宽度大于或小于父类元素宽度后，`flex-grow`及`flex-shrink`如何控制子元素的扩大或缩放，以及最后宽度的计算。
 
 ## flex-grow
 
-在所有`flex`子元素的宽度总和小于父类宽度时，父类宽度减去所有`flex`子元素的宽度就得到一个多余的宽度（[positive free space](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Controlling_Ratios_of_Flex_Items_Along_the_Main_Ax#positive_and_negative_free_space)），各个子元素会根据自身设置的`flex-grow`值的比例来占据这个剩余宽度
+在所有`flex`子元素的宽度总和小于父类宽度时，父类宽度减去所有`flex`子元素的宽度就得到一个多余的宽度（[positive free space](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Controlling_Ratios_of_Flex_Items_Along_the_Main_Ax#positive_and_negative_free_space)），各个子元素会根据自身设置的`flex-grow`值的比例来占据这个剩余宽度。
 
 假设父类宽度为`300px`，有两个子元素（a、b）大小均为`100px`，`flex-grow`值分别为`1`和`2`
 
