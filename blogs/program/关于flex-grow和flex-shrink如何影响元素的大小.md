@@ -49,9 +49,15 @@ b: `200 - 100 * 2 / 3 = 133.33px`
 
 可以尝试拖动下面的进度条，调整`flex-grow`和`flex-shrink`，看看具体效果
 
-<iframe src="https://codesandbox.io/embed/xenodochial-feather-seudt?fontsize=14&hidenavigation=1&theme=dark"
+<!-- <iframe src="https://codesandbox.io/embed/xenodochial-feather-seudt?fontsize=14&hidenavigation=1&theme=dark"
   style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
   title="xenodochial-feather-seudt"
   allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-></iframe>
+></iframe> -->
+
+<iframe height="800" style="width: 100%;" scrolling="no" title="flex shrink" src="https://codepen.io/action-hong/embed/gOxOxqQ?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/action-hong/pen/gOxOxqQ">
+  flex shrink</a> by action-hong (<a href="https://codepen.io/action-hong">@action-hong</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>

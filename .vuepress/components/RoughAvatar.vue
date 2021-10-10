@@ -14,10 +14,7 @@
       >
       <button @click="download">下载</button>
     </p>
-    <canvas
-      width="420"
-      height="420"
-    ></canvas>
+    <canvas></canvas>
     <p>
       <label for="roughness">roughness: {{ option.roughness }}</label>
     </p>
@@ -314,6 +311,9 @@ function isPointEqual(arr, arr2) {
 
 function drawRoughAvatar(points, option) {
   if (points.length === 0) return;
+  ctx.save()
+  const ratio = window.devicePixelRatio || 1
+  ctx.scale(ratio, ratio)
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = bg;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -325,6 +325,7 @@ function drawRoughAvatar(points, option) {
       fill: option.useFill ? option.fill : fill,
     });
   }
+  ctx.restore()
 }
 
 const bg = "#f0f0f0";
@@ -363,7 +364,16 @@ export default {
   mounted() {
     fileInput = document.querySelector('input[type="file"]');
     canvas = document.querySelector("canvas");
+
+    // 设置大小
+    const width = canvas.clientWidth
+    const ratio = window.devicePixelRatio || 1
+    canvas.style.width = width
+    canvas.style.height = width
+    canvas.width = width * ratio
+    canvas.height = width * ratio
     ctx = canvas.getContext("2d");
+    // ctx.scale(ratio, ratio)
     fileInput.addEventListener("input", (e) => {
       const file = e.target.files[0];
       this.filename = file.name;
@@ -412,5 +422,8 @@ export default {
 //@import url(); 引入公共css类
 canvas {
   border: 1px solid #888;
+  width: 420px;
+  height: 420px;
+  max-width: 100%;
 }
 </style>
