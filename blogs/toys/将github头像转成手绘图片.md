@@ -25,3 +25,4 @@ tags:
 
 - 部分图片无法正确转换，如[这张图](https://avatars.githubusercontent.com/u/34114132?v=4)
 - 优化算法，现在加载新图片需要1s多
+- 移动端读取到的填充颜色不正确

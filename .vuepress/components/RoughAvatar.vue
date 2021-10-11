@@ -11,10 +11,11 @@
       <input
         type="file"
         accept="image/*"
+        @input="handleImg"
       >
       <button @click="download">下载</button>
     </p>
-    <canvas></canvas>
+    <canvas class="avatar-canvas"></canvas>
     <p>
       <label for="roughness">roughness: {{ option.roughness }}</label>
     </p>
@@ -144,15 +145,15 @@ function readAvatar(option) {
   // 总共读取12 * 12个点的像素的颜色
   const data = imageData.data;
   colors = [];
-
   // 总共这么多个点
   const col = canvas.width;
   const row = canvas.height;
+  console.warn(data.length, col, row)
 
   for (let i = 0; i < data.length; i += 4) {
     colors.push(toHex([...data.slice(i, i + 3)]));
   }
-
+  window.colors = colors
   console.time("find");
   // O(N)
   points = findColorArea(colors, row, col);
@@ -313,7 +314,7 @@ function drawRoughAvatar(points, option) {
   if (points.length === 0) return;
   ctx.save()
   const ratio = window.devicePixelRatio || 1
-  ctx.scale(ratio, ratio)
+  // ctx.scale(ratio, ratio)
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = bg;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -361,20 +362,9 @@ export default {
       ],
     };
   },
-  mounted() {
-    fileInput = document.querySelector('input[type="file"]');
-    canvas = document.querySelector("canvas");
-
-    // 设置大小
-    const width = canvas.clientWidth
-    const ratio = window.devicePixelRatio || 1
-    canvas.style.width = width
-    canvas.style.height = width
-    canvas.width = width * ratio
-    canvas.height = width * ratio
-    ctx = canvas.getContext("2d");
-    // ctx.scale(ratio, ratio)
-    fileInput.addEventListener("input", (e) => {
+  methods: {
+    handleImg (e) {
+      console.warn('文件变更', e)
       const file = e.target.files[0];
       this.filename = file.name;
       const reader = new FileReader();
@@ -383,19 +373,29 @@ export default {
         const img = new Image();
         img.src = reader.result;
         img.onload = () => {
-          ctx.drawImage(img, 0, 0);
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
           imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
           readAvatar(this.option);
-        };
+        }
       };
-    });
-  },
-  methods: {
+    },
     loadAvatar() {
-      const img = this.$refs.avatar;
-      ctx.drawImage(img, 0, 0);
-      imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      readAvatar(this.option);
+      setTimeout(() => {
+        canvas = document.querySelector("canvas.avatar-canvas");
+        // 设置大小
+        const width = Math.min(420, this.$el.clientWidth)
+        console.warn('init width', width, this.$el, this.$el.clientWidth)
+        const ratio = window.devicePixelRatio || 1
+        canvas.style.width = width + 'px'
+        canvas.style.height = width + 'px'
+        canvas.width = width * ratio
+        canvas.height = width * ratio
+        ctx = canvas.getContext("2d");
+        const img = this.$refs.avatar;
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        readAvatar(this.option);
+      }, 1000)
     },
     download() {
       if (points.length === 0) return;
@@ -421,7 +421,6 @@ export default {
 <style lang='scss' scoped>
 //@import url(); 引入公共css类
 canvas {
-  border: 1px solid #888;
   width: 420px;
   height: 420px;
   max-width: 100%;
