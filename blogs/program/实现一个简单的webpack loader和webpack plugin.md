@@ -9,13 +9,13 @@ tags:
 
 ## loaders
 
-在使用`webpack`的日常开发中，我们会使用到各种`loader`，如[`babel-loader`](https://github.com/babel/babel-loader)，可以让我们使用`babel`对js文件进行转化，如[`sass-loader`](https://github.com/webpack-contrib/sass-loader)，可以将`sass`文件或者`scss`文件转化为`css`文件，等等
+在使用`webpack`的日常开发中，我们会使用到各种`loader`，如[`babel-loader`](https://github.com/babel/babel-loader)，可以让我们使用`babel`对js文件进行转化，如[`sass-loader`](https://github.com/webpack-contrib/sass-loader)，可以将`sass`文件转化为`css`文件，等等
 
 简单来说，[`loader`](https://webpack.js.org/concepts/#loaders)就是个转化器，`webpack`用来它来讲对源代码进行转化。
 
 > Out of the box, webpack only understands JavaScript and JSON files. Loaders allow webpack to process other types of files and convert them into valid modules that can be consumed by your application and added to the dependency graph.
 
-下面我们实现一个简单的`loader`，给`css`文件添加上一行注释`/* 经过test-loader处理 */`
+下面我们实现一个简单的`loader`，将`css`文件中所有的`red`字符串替换成`green`
 
 ### loader的实现
 
@@ -70,7 +70,7 @@ div {
 }
 ```
 
-可以看到注释加上了。
+可以看到替换成功了。
 
 ### loader options
 
@@ -101,7 +101,7 @@ module.exports = function (source) {
 };
 ```
 
-然后我们修改`webpack`配置，传入我们想要的注释内容
+然后我们修改`webpack`配置，传入我们想要替换后的颜色
 
 ```diff
 const path = require('path');
@@ -193,7 +193,7 @@ module.exports = {
           {
             loader: path.resolve('/path/to/test-loader.js'),
             options: {
-              comment: '学习使我快乐'
+              color: 'blue'
             }
 -          }
 +          },
@@ -219,19 +219,7 @@ div {
 
 可以看到刚刚异步`loader`也顺利执行了。
 
-读者可以直接使用下面的[在线编辑器](https://stackblitz.com/edit/github-vapjcm?embed=1&file=README.md)自行尝试：
-
-```bash
-# 编译
-npm run build
-
-# 运行
-npm run start
-```
-
-<iframe 
-style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-src="https://stackblitz.com/edit/github-vapjcm?embed=1&file=README.md"></iframe>
+[你可以试试](https://stackblitz.com/edit/github-vapjcm?embed=1&file=README.md)自行尝试：
 
 ## plugin
 
