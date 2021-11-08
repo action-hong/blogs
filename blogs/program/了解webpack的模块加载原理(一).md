@@ -150,7 +150,7 @@ var __webpack_modules__ = ({
 });
 ```
 
-删去多于的注释后，可以看出他就是个以模块名为`key`，加载执行模块内容为`value`的对象，注意这个`value`是一个函数，它的三个对象简单的可以看成是`webpack`里的`module`、`export`和`require`，这三个概率对应常用`commonjs`的同学来说应该很熟悉了。
+删去多于的注释后，可以看出他就是个以模块名为`key`，加载执行模块内容为`value`的对象，注意这个`value`是一个函数，它的三个对象简单的可以看成是`webpack`里的`module`、`export`和`require`，这三个概率对于熟悉`commonjs`的同学来说应该很熟悉了。
 
 我们继续看这个`IIFE`还做了什么事情：
 
@@ -217,7 +217,7 @@ function foo() {
 }
 ```
 
-很简单，主要就是给`__webpack_exports__`定义一个属性值`foo`，对应值便是我们再源代码里定义的`foo`函数，因此这里可以看成是:
+很简单，主要就是给`__webpack_exports__`定义一个属性值`foo`，对应值便是我们在源代码里定义的`foo`函数，因此这里可以看成是:
 
 ```javascript
 var _foo__WEBPACK_IMPORTED_MODULE_0__ = {
@@ -230,11 +230,11 @@ var _foo__WEBPACK_IMPORTED_MODULE_0__ = {
 
 即`(0,_foo__WEBPACK_IMPORTED_MODULE_0__.foo)()`便是调用`foo`方法。
 
-上诉便是一个简单的模块加载流程了，在总结一下具体流程：
+上诉便是一个简单的模块加载流程了，在总结一下：
 
 1. 定义一个包含所有模块加载的对象`__webpack_modules__`
 2. 定义一个加载模块的缓冲对象，有缓冲时直接加载
-3. 定义一个加载方法`__webpack_require—__`，源码中有引入其他模块的时候，就会调用该方法，加载时有缓冲时直接用缓存，没有缓存时回新建一个`module`，然后会加载对应的模块，将其导出的内容放到`module.export`内，同时把刚刚的`module`放到缓存中
+3. 定义一个加载方法`__webpack_require__`，源码中有引入其他模块的时候，就会调用该方法，加载时有缓冲时直接用缓存，没有缓存时回新建一个`module`，然后会加载对应的模块，将其导出的内容放到`module.export`内，同时把刚刚的`module`放到缓存中
 4. 加载执行入口模块，递归加载其他模块。
 
 **这里还有个问题，为什么需要使用`__webpack_require__.r`给模块加上标识呢？**，主要用来处理混用`commonjs`和`es module`的情况，对源代码进行修改：
