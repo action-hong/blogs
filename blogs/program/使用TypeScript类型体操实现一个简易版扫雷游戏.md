@@ -337,7 +337,7 @@ type 渲染游戏<
 
 一下我们可以到到渲染出来的游戏结果：
 
-![渲染结果](./img/hover.png)
+![渲染结果](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1f733460982c4554ac1753093ad15e88~tplv-k3u1fbpfcp-watermark.awebp?)
 
 ## 游戏是否结束
 
