@@ -1,5 +1,5 @@
 ---
-title: 关于米家BLE设备拓展程序开发的spec读写的笔记
+title: 关于米家BLE设备拓展程序开发的笔记
 date: 2021-11-19
 categories:
   - program
