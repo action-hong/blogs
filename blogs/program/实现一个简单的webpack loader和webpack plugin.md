@@ -219,8 +219,80 @@ div {
 
 可以看到刚刚异步`loader`也顺利执行了。
 
-[你可以试试](https://stackblitz.com/edit/github-vapjcm?embed=1&file=README.md)自行尝试：
+[在这里试试](https://stackblitz.com/edit/github-vapjcm?embed=1&file=README.md)
 
 ## plugin
 
-todo
+相比较于`loader`只能对源代码进行处理，插件能做的事情的多了。
+
+webpack在编译过程中会触发[很多事件](https://webpack.js.org/api/compiler-hooks/#hooks)，插件可以通过监听这些事件，然后使用相关api对输出资源进行处理。
+
+首先看下官网文档的定义，插件需要包含如下部分：
+
+1. 一个类或者命名函数
+2. 有个`apply`方法
+3. 指定一个[事件](https://webpack.js.org/api/compiler-hooks/)来绑定
+4. 处理`webpack`内部实例的数据
+5. 完成想要的功能后调用`webpack`提供的回调函数。
+
+另外在写插件之前，我们需要先对`compiler`和`compilation`这两个重要的对象有所了解
+
+下面我们写一个简易版本的[`HtmlWebpackPlugin`](https://webpack.js.org/plugins/html-webpack-plugin/)
+
+```javascript
+class HtmlWebpackPlugin {
+  apply(compiler) {
+    const pluginName = HtmlWebpackPlugin.name
+    // webpack module instance can be accessed from the compiler object,
+    // this ensures that correct version of the module is used
+    // (do not require/import the webpack or any symbols from it directly).
+    const { webpack } = compiler;
+
+    // Compilation object gives us reference to some useful constants.
+    const { Compilation } = webpack;
+
+    // RawSource is one of the "sources" classes that should be used
+    // to represent asset sources in compilation.
+    const { RawSource } = webpack.sources;
+    compiler.hooks.thisCompilation.tap(
+      pluginName,
+      (compilation) => {
+        compilation.hooks.processAssets.tap(
+          {
+            name: pluginName,
+  
+            // Using one of the later asset processing stages to ensure
+            // that all assets were already added to the compilation by other plugins.
+            stage: Compilation.PROCESS_ASSETS_STAGE_SUMMARIZE,
+          },
+          (assets) => {
+            // 获取编译生成的js文件
+            const filename = compiler.options.output.filename
+    
+            const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  </head>
+  <body>
+  
+  </body>
+  <script src="${filename}"></script>
+</html>`
+
+            compilation.emitAsset(
+              'index.html',
+              new RawSource(html)
+            )
+          }
+        )
+      }
+    )
+  }
+}
+
+module.exports = HtmlWebpackPlugin
+```
