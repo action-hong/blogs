@@ -36,7 +36,7 @@ Bluetooth.spec
 
 ### 读取时机
 
-经测试，需要在发现特征值后，才能正确读取属性，而非连接成功。（不过`Android`上链接后即可）
+经测试，需要在发现特征值后，才能正确读取属性，而非连接成功。（不过`Android`上连接后即可）
 
 ```js
 this._s2 = BluetoothEvent.bluetoothCharacteristicDiscovered.addListener(
