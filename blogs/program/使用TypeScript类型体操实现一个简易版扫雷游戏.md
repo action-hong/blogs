@@ -9,6 +9,7 @@ tags:
  - 前端
  - 扫雷
  - 游戏
+- sticky: 1
 ---
 
 本文首次发表于[知乎专栏](https://zhuanlan.zhihu.com/p/429165133)
