@@ -12,7 +12,7 @@ publish: false
 
 ## 背景
 
-笔者前几年基于[`Blockly`](https://developers.google.com/blockly)开发了几款app，对该库有了一些了解，本文将介绍一些关于使用`Blockly`的一些技巧和心得
+笔者前几年基于[`Blockly`](https://developers.google.com/blockly)开发了几款app，对该库有了一些了解，本文将介绍一些关于使用`Blockly`的一些技巧和心得.
 
 
 ## 代码片段
