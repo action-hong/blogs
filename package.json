@@ -7,6 +7,7 @@
     "build": "vuepress build ."
   },
   "devDependencies": {
+    "markdown-it-footnote": "^3.0.3",
     "node-sass": "^6.0.1",
     "sass-loader": "^10.2.0",
     "vuepress": "1.8.2",

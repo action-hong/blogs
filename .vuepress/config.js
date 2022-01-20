@@ -88,6 +88,9 @@ module.exports = {
   },
   markdown: {
     lineNumbers: true,
+    plugins: [
+      "footnote"
+    ]
   },
   plugins: [
     [
