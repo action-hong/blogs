@@ -65,7 +65,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="less">
 .container {
   background: #000000;
   text-align: center;

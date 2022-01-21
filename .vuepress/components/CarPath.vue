@@ -448,7 +448,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .container {
   canvas {
     border: 1px solid;
