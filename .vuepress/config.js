@@ -1,6 +1,6 @@
 module.exports = {
-  title: "原来你是阿旋呀",
-  description: "个人生活，工作随便扯扯",
+  title: "记录个人的工作和生活",
+  description: "记录个人的工作和生活 -- 原来你是阿旋呀",
   dest: "public",
   head: [
     [
